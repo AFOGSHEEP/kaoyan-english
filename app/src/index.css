@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+:root {
+  --reading-font-size: 17px;
+  --brand: #4f46e5;
+  --brand-deep: #3730a3;
+  --brand-soft: #eef2ff;
+}
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  @apply bg-slate-50 text-slate-800 antialiased;
+  background-image: radial-gradient(1200px 500px at 80% -10%, rgba(79, 70, 229, 0.06), transparent),
+    radial-gradient(900px 400px at -10% 0%, rgba(14, 165, 233, 0.05), transparent);
+  background-attachment: fixed;
+}
+
+/* ---------- 阅读区 ---------- */
+.reading-text { font-size: var(--reading-font-size); line-height: 1.95; }
+
+.vocab-hint {
+  border-bottom: 1.5px dotted #a5b4fc;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.15s, border-color 0.15s;
+}
+.vocab-hint:hover { background: #e0e7ff; border-bottom-color: var(--brand); }
+
+.annot-mark {
+  border-bottom: 2px solid #f59e0b;
+  cursor: pointer;
+  background: rgba(245, 158, 11, 0.10);
+  border-radius: 2px;
+  transition: background 0.15s;
+}
+.annot-mark:hover { background: rgba(245, 158, 11, 0.22); }
+
+.locate-hl { background: rgba(250, 204, 21, 0.45); border-radius: 2px; }
+
+/* ---------- 完形/新题型空位 ---------- */
+.blank-slot {
+  @apply inline-block align-baseline cursor-pointer rounded-md px-1.5 mx-0.5 whitespace-nowrap font-medium;
+  border-bottom: 2px solid #818cf8;
+  min-width: 3.2em;
+  text-align: center;
+  color: #6366f1;
+  background: rgba(99, 102, 241, 0.05);
+  transition: all 0.15s;
+}
+.blank-slot:hover { background: #e0e7ff; }
+.blank-slot.answered { border-bottom-color: #6366f1; color: #4f46e5; background: #eef2ff; }
+.blank-slot.correct { border-bottom-color: #16a34a; color: #15803d; background: rgba(22, 163, 74, 0.08); }
+.blank-slot.wrong { border-bottom-color: #ef4444; color: #b91c1c; background: rgba(239, 68, 68, 0.08); text-decoration: line-through; }
+.blank-slot.wrong::after { content: '↻'; text-decoration: none; margin-left: 3px; font-size: 0.8em; opacity: 0.7; }
+.blank-slot.active { outline: 2px solid var(--brand); outline-offset: 1px; background: #e0e7ff; }
+
+/* ---------- 组件 ---------- */
+.card { @apply rounded-2xl border border-slate-200/80 bg-white shadow-sm; }
+.card-hover { @apply transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:border-indigo-200; }
+
+.btn-primary { @apply rounded-xl bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition-all hover:bg-indigo-500 active:scale-95; }
+.btn-ghost { @apply rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm text-slate-600 transition-all hover:border-slate-300 hover:bg-slate-50 active:scale-95; }
+
+.chip { @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium; }
+
+/* 选项按钮 */
+.opt-btn {
+  @apply flex w-full items-start gap-2.5 rounded-xl border-2 px-3.5 py-2.5 text-left transition-all duration-150;
+  border-color: #e2e8f0;
+}
+.opt-btn:not(:disabled):hover { border-color: #a5b4fc; background: #f5f6ff; transform: translateX(2px); }
+.opt-btn.chosen { border-color: var(--brand); background: var(--brand-soft); }
+.opt-btn.right { border-color: #22c55e; background: #f0fdf4; animation: pop 0.3s ease; }
+.opt-btn.wrong { border-color: #f87171; background: #fef2f2; animation: shake 0.3s ease; }
+
+@keyframes pop { 0% { transform: scale(0.98); } 60% { transform: scale(1.015); } 100% { transform: scale(1); } }
+@keyframes shake { 0%,100% { transform: translateX(0); } 30% { transform: translateX(-4px); } 65% { transform: translateX(3px); } }
+@keyframes fade-up { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.anim-in { animation: fade-up 0.25s ease both; }
+
+/* 移动抽屉 */
+.drawer-sheet { transition: max-height 0.3s cubic-bezier(0.32, 0.72, 0, 1); border-radius: 1.25rem 1.25rem 0 0; }
+
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
+
+/* 滚动条 */
+@media (pointer: fine) {
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+  ::-webkit-scrollbar-track { background: transparent; }
+}
+
+/* 选区颜色（配合气泡） */
+::selection { background: rgba(99, 102, 241, 0.25); }

@@ -1,0 +1,557 @@
+[
+ {
+  "year": 2005,
+  "examSet": 1,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 5
+  },
+  "partBVariant": "gapfill",
+  "verified": {
+   "cloze": "20/20",
+   "reading": "20/20"
+  }
+ },
+ {
+  "year": 2006,
+  "examSet": 1,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 5
+  },
+  "partBVariant": "gapfill",
+  "verified": {
+   "cloze": "20/20",
+   "reading": "20/20"
+  }
+ },
+ {
+  "year": 2007,
+  "examSet": 1,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 5
+  },
+  "partBVariant": "headings",
+  "verified": {
+   "cloze": "20/20",
+   "reading": "20/20"
+  }
+ },
+ {
+  "year": 2008,
+  "examSet": 1,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 5
+  },
+  "partBVariant": "gapfill",
+  "verified": {
+   "cloze": "20/20",
+   "reading": "20/20"
+  }
+ },
+ {
+  "year": 2009,
+  "examSet": 1,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 5
+  },
+  "partBVariant": "gapfill",
+  "verified": {
+   "cloze": "20/20",
+   "reading": "20/20"
+  }
+ },
+ {
+  "year": 2010,
+  "examSet": 1,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 5
+  },
+  "partBVariant": "ordering",
+  "verified": {
+   "cloze": "20/20",
+   "reading": "20/20"
+  }
+ },
+ {
+  "year": 2011,
+  "examSet": 1,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 5
+  },
+  "partBVariant": "ordering",
+  "verified": {
+   "cloze": "20/20",
+   "reading": "20/20"
+  }
+ },
+ {
+  "year": 2012,
+  "examSet": 1,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 5
+  },
+  "partBVariant": "gapfill",
+  "verified": {
+   "cloze": "20/20",
+   "reading": "20/20"
+  }
+ },
+ {
+  "year": 2013,
+  "examSet": 1,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 5
+  },
+  "partBVariant": "gapfill",
+  "verified": {
+   "cloze": "12/20",
+   "reading": "7/20"
+  }
+ },
+ {
+  "year": 2014,
+  "examSet": 1,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 5
+  },
+  "partBVariant": "ordering",
+  "verified": {
+   "cloze": "6/20",
+   "reading": "7/20"
+  }
+ },
+ {
+  "year": 2015,
+  "examSet": 1,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 5
+  },
+  "partBVariant": "gapfill",
+  "verified": {
+   "cloze": "10/20",
+   "reading": "11/20"
+  }
+ },
+ {
+  "year": 2016,
+  "examSet": 1,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 5
+  },
+  "partBVariant": "headings",
+  "verified": {
+   "cloze": "10/20",
+   "reading": "8/20"
+  }
+ },
+ {
+  "year": 2017,
+  "examSet": 1,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 5
+  },
+  "partBVariant": "ordering",
+  "verified": {
+   "cloze": "3/20",
+   "reading": "17/20"
+  }
+ },
+ {
+  "year": 2018,
+  "examSet": 1,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 5
+  },
+  "partBVariant": "ordering",
+  "verified": {
+   "cloze": "20/20",
+   "reading": "20/20"
+  }
+ },
+ {
+  "year": 2019,
+  "examSet": 1,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 5
+  },
+  "partBVariant": "ordering",
+  "verified": {
+   "cloze": "20/20",
+   "reading": "20/20"
+  }
+ },
+ {
+  "year": 2020,
+  "examSet": 1,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 5
+  },
+  "partBVariant": "gapfill",
+  "verified": {
+   "cloze": "1/20",
+   "reading": "15/20"
+  }
+ },
+ {
+  "year": 2021,
+  "examSet": 1,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 5
+  },
+  "partBVariant": "gapfill",
+  "verified": {
+   "cloze": "0/20",
+   "reading": "3/20"
+  }
+ },
+ {
+  "year": 2022,
+  "examSet": 1,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 5
+  },
+  "partBVariant": "matching",
+  "verified": {
+   "cloze": "20/20",
+   "reading": "20/20"
+  }
+ },
+ {
+  "year": 2023,
+  "examSet": 1,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 5
+  },
+  "partBVariant": "ordering",
+  "verified": {
+   "cloze": "20/20",
+   "reading": "20/20"
+  }
+ },
+ {
+  "year": 2024,
+  "examSet": 1,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 5
+  },
+  "partBVariant": "matching",
+  "verified": {
+   "cloze": "0/0",
+   "reading": "0/0"
+  }
+ },
+ {
+  "year": 2025,
+  "examSet": 1,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 5
+  },
+  "partBVariant": "ordering",
+  "verified": {
+   "cloze": "0/0",
+   "reading": "0/0"
+  }
+ },
+ {
+  "year": 2010,
+  "examSet": 2,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 1
+  },
+  "partBVariant": "matching",
+  "verified": {
+   "cloze": "0/0",
+   "reading": "0/0"
+  }
+ },
+ {
+  "year": 2011,
+  "examSet": 2,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 1
+  },
+  "partBVariant": "matching",
+  "verified": {
+   "cloze": "0/0",
+   "reading": "0/0"
+  }
+ },
+ {
+  "year": 2012,
+  "examSet": 2,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 1
+  },
+  "partBVariant": "matching",
+  "verified": {
+   "cloze": "0/0",
+   "reading": "0/0"
+  }
+ },
+ {
+  "year": 2013,
+  "examSet": 2,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 1
+  },
+  "partBVariant": "headings",
+  "verified": {
+   "cloze": "0/0",
+   "reading": "0/0"
+  }
+ },
+ {
+  "year": 2014,
+  "examSet": 2,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 1
+  },
+  "partBVariant": "matching",
+  "verified": {
+   "cloze": "0/0",
+   "reading": "0/0"
+  }
+ },
+ {
+  "year": 2015,
+  "examSet": 2,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 1
+  },
+  "partBVariant": "headings",
+  "verified": {
+   "cloze": "0/0",
+   "reading": "0/0"
+  }
+ },
+ {
+  "year": 2016,
+  "examSet": 2,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 1
+  },
+  "partBVariant": "headings",
+  "verified": {
+   "cloze": "0/0",
+   "reading": "0/0"
+  }
+ },
+ {
+  "year": 2017,
+  "examSet": 2,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 1
+  },
+  "partBVariant": "matching",
+  "verified": {
+   "cloze": "0/0",
+   "reading": "0/0"
+  }
+ },
+ {
+  "year": 2018,
+  "examSet": 2,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 1
+  },
+  "partBVariant": "headings",
+  "verified": {
+   "cloze": "0/0",
+   "reading": "0/0"
+  }
+ },
+ {
+  "year": 2019,
+  "examSet": 2,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 1
+  },
+  "partBVariant": "matching",
+  "verified": {
+   "cloze": "0/0",
+   "reading": "0/0"
+  }
+ },
+ {
+  "year": 2020,
+  "examSet": 2,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 1
+  },
+  "partBVariant": "headings",
+  "verified": {
+   "cloze": "0/0",
+   "reading": "0/0"
+  }
+ },
+ {
+  "year": 2021,
+  "examSet": 2,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 1
+  },
+  "partBVariant": "headings",
+  "verified": {
+   "cloze": "0/0",
+   "reading": "0/0"
+  }
+ },
+ {
+  "year": 2022,
+  "examSet": 2,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 1
+  },
+  "partBVariant": "headings",
+  "verified": {
+   "cloze": "0/0",
+   "reading": "0/0"
+  }
+ },
+ {
+  "year": 2023,
+  "examSet": 2,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 1
+  },
+  "partBVariant": "matching",
+  "verified": {
+   "cloze": "0/0",
+   "reading": "0/0"
+  }
+ },
+ {
+  "year": 2024,
+  "examSet": 2,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 1
+  },
+  "partBVariant": "matching",
+  "verified": {
+   "cloze": "0/0",
+   "reading": "0/0"
+  }
+ },
+ {
+  "year": 2025,
+  "examSet": 2,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 5,
+   "translation": 1
+  },
+  "partBVariant": "headings",
+  "verified": {
+   "cloze": "0/0",
+   "reading": "0/0"
+  }
+ }
+]

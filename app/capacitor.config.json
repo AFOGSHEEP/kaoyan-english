@@ -1,0 +1,11 @@
+{
+  "appId": "com.kaoyan.english",
+  "appName": "考研英语题库",
+  "webDir": "dist",
+  "android": {
+    "backgroundColor": "#f8fafc"
+  },
+  "server": {
+    "androidScheme": "https"
+  }
+}

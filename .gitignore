@@ -1,0 +1,23 @@
+# 依赖与构建产物
+node_modules/
+app/node_modules/
+app/dist/
+app/release/
+app/.vite/
+
+# Capacitor / Android 构建产物（工程文件保留）
+app/android/.gradle/
+app/android/app/build/
+app/android/build/
+app/android/local.properties/
+app/android/capacitor-cordova-android-plugins/build/
+*.apk
+*.exe
+
+# 内容管线的原始下载数据（可由 fetch-sources.mjs 重新拉取）
+scripts/sources/
+
+# 杂项
+*.log
+.DS_Store
+Thumbs.db

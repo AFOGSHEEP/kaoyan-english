@@ -2,7 +2,7 @@
 node_modules/
 app/node_modules/
 app/dist/
-app/release/
+app/release*/
 app/.vite/
 
 # Capacitor / Android 构建产物（工程文件保留）

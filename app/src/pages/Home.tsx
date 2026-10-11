@@ -4,6 +4,7 @@ import { loadIndex } from '../lib/content'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../db'
 import type { IndexEntry } from '../types'
+import type { Plan } from '../lib/aiapi'
 
 const SECS = [
   { key: 'cloze', label: '完形' },
@@ -18,6 +19,7 @@ export function Home() {
   const answers = useLiveQuery(() => db.answers.toArray(), [])
   const words = useLiveQuery(() => db.words.toArray(), [])
   const annotations = useLiveQuery(() => db.annotations.toArray(), [])
+  const plan = useLiveQuery(async () => (await db.kv.get('ai-plan'))?.value as Plan | undefined, [])
 
   useEffect(() => { loadIndex().then(setIndex).catch(() => setIndex([])) }, [])
 
@@ -51,6 +53,32 @@ export function Home() {
           <HeroStat label="错题" value={String(answers?.filter(a => a.correct === false).length || 0)} sub="可重做" />
         </div>
       </div>
+
+      {/* AI 学习计划（AI 通过 kaoyanAPI.setPlan 注入） */}
+      {plan && plan.items?.length > 0 && (
+        <div className="card mt-4 overflow-hidden anim-in">
+          <div className="flex items-center gap-2 border-b border-slate-100 bg-gradient-to-r from-indigo-50 to-sky-50 px-4 py-2.5">
+            <span className="text-sm font-bold text-indigo-800">🤖 AI 学习计划</span>
+            {plan.by && <span className="chip bg-white/70 text-slate-500">来自 {plan.by}</span>}
+            <span className="ml-auto text-xs text-slate-400">{plan.items.filter(i => i.done).length}/{plan.items.length} 完成</span>
+            <button className="text-xs text-slate-400 transition hover:text-red-500" title="删除计划"
+              onClick={async () => { await db.kv.delete('ai-plan') }}>✕</button>
+          </div>
+          <div className="px-4 py-2">
+            {plan.items.map((it, i) => (
+              <button key={i} className="flex w-full items-start gap-2.5 rounded-lg px-2 py-2 text-left transition hover:bg-slate-50"
+                onClick={async () => {
+                  const p = (await db.kv.get('ai-plan'))?.value as Plan
+                  if (p?.items[i]) { p.items[i].done = !p.items[i].done; await db.kv.put({ key: 'ai-plan', value: p }) }
+                }}>
+                <span className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-md border text-[10px] font-bold transition-all
+                  ${it.done ? 'border-green-500 bg-green-500 text-white' : 'border-slate-300 text-transparent'}`}>✓</span>
+                <span className={`text-sm leading-relaxed ${it.done ? 'text-slate-400 line-through' : 'text-slate-700'}`}>{it.text}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* 卷种切换 */}
       <div className="mt-6 flex items-center gap-2">

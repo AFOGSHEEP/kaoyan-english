@@ -26,6 +26,56 @@
 4. 行为：`recent_events` 中 `answer` 与 `explain_view` 的比例（看没看解析）、`word_add` 与 `word_review` 的比例（收词不复习是常见问题）
 5. 输出：请给出**具体到题目**的补救清单（回访哪些错题）+ 两周计划（每天做什么、做多少）+ 下次导出诊断包的预期指标
 
+## 一·二、AI 操作接口（直接读写应用数据，无需用户手动导出）
+
+应用内置两套同构接口，核心是 `window.kaoyanAPI`（app/src/lib/aiapi.ts）：
+
+### A. 桌面版（Windows/Electron）：本机 HTTP API
+
+应用启动后在 `127.0.0.1:3742`（占用时递增到 3752）开 HTTP 服务。**端口与 token 写在**：
+`%APPDATA%\kaoyan-english-one\kaoyan-api.json`（含 port/token/base）。所有请求须带头 `X-Kaoyan-Token`。
+
+```bash
+# 发现接口（AI 第一步永远先做这个）
+cat "$APPDATA/kaoyan-english-one/kaoyan-api.json"
+# → { "port": 3742, "token": "<hex>", "base": "http://127.0.0.1:3742/api" }
+
+B=http://127.0.0.1:3742/api; T=<token>
+curl -H "X-Kaoyan-Token: $T" $B/ping            # 连通性
+curl -H "X-Kaoyan-Token: $T" $B/stats           # 学习诊断包（同设置页导出）
+curl -H "X-Kaoyan-Token: $T" $B/papers          # 试卷进度
+curl -H "X-Kaoyan-Token: $T" $B/mistakes        # 错题
+curl -H "X-Kaoyan-Token: $T" $B/words           # 单词本
+curl -H "X-Kaoyan-Token: $T" $B/answers/2023    # 某卷做题记录（paperId："2023"英一/"2023-2"英二）
+curl -H "X-Kaoyan-Token: $T" "$B/logs?limit=100" # 行为日志
+curl -H "X-Kaoyan-Token: $T" $B/paper/2023      # 整卷内容（题干/选项/答案/解析）
+
+# 写入
+curl -X POST  -H "X-Kaoyan-Token: $T" -d '[{"word":"ubiquitous","gloss":"adj. 无处不在的"}]' $B/words
+curl -X PATCH -H "X-Kaoyan-Token: $T" -d '{"notes":"常考：科技类阅读"}' $B/words/12
+curl -X DELETE -H "X-Kaoyan-Token: $T" $B/words/12
+curl -X POST  -H "X-Kaoyan-Token: $T" \
+  -d '{"by":"Claude","items":["Day1: 重做2023完形错题","Day1: 复习8个到期单词"]}' \
+  $B/plan        # 注入学习计划 → 应用首页实时显示「AI 学习计划」卡片，用户可勾选完成
+curl -X POST -H "X-Kaoyan-Token: $T" --data @backup.json $B/import   # 恢复备份
+```
+
+其余端点：`GET /api/plan`、`DELETE /api/plan`、`GET /api/annotations`、`GET /api/export`。404 响应会列出全部端点。
+
+### B. 网页/PWA/Android：window.kaoyanAPI
+
+页面全局挂载 `window.kaoyanAPI`，方法与 HTTP 端点一一对应（stats/papers/paper/answers/mistakes/words/addWords/updateWord/deleteWord/annotations/logs/getPlan/setPlan/clearPlan/exportAll/importAll），全部返回 Promise。有浏览器控制能力的 AI（如 browser-use）可在页面里 `evaluate` 调用。
+
+### AI 助手的标准工作流
+
+1. 读 `kaoyan-api.json` → `GET /api/stats`（诊断）
+2. 按上面诊断框架分析
+3. `POST /api/plan` 注入补强计划（用户打开应用即可见）
+4. 需要时 `POST /api/words` 预置生词表
+5. 用户完成后再 `GET /api/stats` 对比前后变化
+
+**安全**：服务只监听 127.0.0.1；token 随机生成且每次启动更换；跨源网页无法携带自定义头（天然防 CSRF）；注入参数全部经 JSON 重序列化。
+
 ## 二、项目维护（开发者/AI 协作场景）
 
 ### 运行与打包

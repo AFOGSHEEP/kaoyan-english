@@ -44,14 +44,16 @@ export function PaperView() {
   const answers = useLiveQuery(() => db.answers.where('paperId').equals(paperId).toArray(), [paperId])
   const focusAnnotationId = sp.get('annot') ? +sp.get('annot')! : null
 
+  const setTag = (s: number) => s === 2 ? '英语二' : s === 0 ? '早年统一卷' : '英语一'
   const secTabs = useMemo(() => {
     if (!paper) return []
-    return [
+    const tabs = [
       { key: 'cloze', label: '完形', qs: paper.cloze.questions.map((q) => q.n), textParam: null },
       ...paper.readings.map((r) => ({ key: 'reading', label: `阅读 ${r.no}`, qs: r.questions.map((q) => q.n), textParam: r.no })),
       { key: 'partB', label: '新题型', qs: paper.partB.questions.map((q) => q.n), textParam: null },
       { key: 'translation', label: '翻译', qs: paper.translation.sentences.map((q) => q.n), textParam: null }
-    ]
+    ].filter((t) => t.qs.length > 0)
+    return tabs
   }, [paper])
 
   if (err) return <div className="p-8 text-center text-red-600">加载失败：{err}</div>
@@ -76,7 +78,7 @@ export function PaperView() {
         <Link to="/" className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 transition hover:bg-slate-100 hover:text-indigo-600" title="返回试卷库">←</Link>
         <div className="flex items-baseline gap-1.5">
           <span className="text-lg font-black tabular-nums text-slate-900">{paper.year}</span>
-          <span className={`chip ${examSet === 2 ? 'bg-sky-100 text-sky-700' : 'bg-indigo-100 text-indigo-700'}`}>英语{examSet === 2 ? '二' : '一'}</span>
+          <span className={`chip ${examSet === 2 ? 'bg-sky-100 text-sky-700' : examSet === 0 ? 'bg-slate-200 text-slate-600' : 'bg-indigo-100 text-indigo-700'}`}>{setTag(examSet)}</span>
         </div>
         <div className="flex flex-1 flex-wrap items-center gap-1">
           {secTabs.map((t, i) => {

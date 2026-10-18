@@ -32,7 +32,7 @@ export function Home() {
     byKey.set(k, s)
   }
 
-  const papers = (index || []).filter(e => e.examSet === set).sort((a, b) => b.year - a.year)
+  const papers = (index || []).filter(e => e.examSet === set || (set === 1 && e.examSet === 0)).sort((a, b) => b.year - a.year)
   const totalDone = answers?.length || 0
   const totalCorrect = answers?.filter(a => a.correct).length || 0
   const dueWords = words?.filter(w => w.srs.due <= Date.now()).length || 0
@@ -125,7 +125,7 @@ export function Home() {
               <div className="flex items-baseline justify-between">
                 <div className="flex items-baseline gap-2">
                   <span className="text-2xl font-black tabular-nums text-slate-900 group-hover:text-indigo-700">{e.year}</span>
-                  <span className="text-xs font-medium text-slate-400">英语（{e.examSet === 2 ? '二' : '一'}）</span>
+                  <span className="text-xs font-medium text-slate-400">{e.examSet === 0 ? '早年统一卷' : e.examSet === 2 ? '英语二' : '英语一'}</span>
                 </div>
                 {pct != null && (
                   <span className={`chip ${pct >= 70 ? 'bg-emerald-50 text-emerald-600' : pct >= 50 ? 'bg-amber-50 text-amber-600' : 'bg-red-50 text-red-500'}`}>

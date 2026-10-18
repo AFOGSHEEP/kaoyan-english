@@ -11,7 +11,7 @@ export async function loadIndex(): Promise<IndexEntry[]> {
 const cache = new Map<string, Paper>()
 
 // id 形如 '2023'（英语一）或 '2023-2'（英语二）
-export function parsePaperId(id: string): { year: number; examSet: 1 | 2 } {
+export function parsePaperId(id: string): { year: number; examSet: 0 | 1 | 2 } {
   const m = id.match(/^(\d{4})(-2)?$/)
   if (!m) throw new Error(`无效试卷 ID: ${id}`)
   return { year: +m[1], examSet: m[2] ? 2 : 1 }

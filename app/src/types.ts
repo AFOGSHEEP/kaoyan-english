@@ -38,7 +38,7 @@ export interface TranslationSentence {
 
 export interface Paper {
   year: number
-  examSet: 1 | 2
+  examSet: 0 | 1 | 2
   cloze: {
     instructions: string
     paragraphs: string[] // 含 {{n}} 占位符
@@ -68,7 +68,7 @@ export interface Paper {
 
 export interface IndexEntry {
   year: number
-  examSet: 1 | 2
+  examSet: 0 | 1 | 2
   counts: { cloze: number; reading: number; partB: number; translation: number }
   partBVariant: string
   verified: { cloze: string; reading: string }

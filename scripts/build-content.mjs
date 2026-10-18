@@ -80,21 +80,29 @@ function loadCrossTexts(year) {
 
 // ---------- 主源转换 ----------
 function convertPaper(year, examSet = 1) {
-  const dir = examSet === 2 ? `${year}-2` : readdirSync(SRC + '/main').find(d => d.startsWith(String(year)) && !d.includes('-2'));
+  // examSet: 0=早年统一卷(1998-2004, 无新题型) 1=英语一 2=英语二
+  const dir = examSet === 2 ? `${year}-2` : readdirSync(SRC + '/main').find(d => d.startsWith(String(year)) && !d.endsWith('-2'));
   const j = JSON.parse(readFileSync(join(SRC, 'main', dir, `${dir}.json`), 'utf8'));
   const pfo = examSet === 1 ? loadPfooccAnswers(year) : null;
   const cross = examSet === 1 ? loadCrossTexts(year >= 2010 ? year : null) : null;
 
-  const secOf = (pred) => j.sections.find(s => pred(s.title || ''));
+  const allGroups = j.sections.flatMap(s => (s.groups || []).map(g => ({ sec: s, g })))
   const instrOf = (s) => clean(s?.instructions || '');
-
-  const secI = secOf(t => /Section I|Use of English/i.test(t));
-  const secA = secOf(t => /Part A/i.test(t))
-  const secB = secOf(t => /Part B/i.test(t));
-  const secC = secOf(t => /Part C/i.test(t) || /Translation/i.test(t));
+  // 按 group 类型全局定位（与 section 标题解耦，兼容 1998-2025 所有标题变体）
+  const findG = (pred) => allGroups.find(({ g }) => pred(g)) || { sec: null, g: null }
+  const clozeHit = findG(g => g.type === 'cloze')
+  const secI = clozeHit.sec
+  const trHit = findG(g => /translation/.test(g.type || ''))
+  const secC = trHit.sec
+  const pbHit = findG(g => ['matching', 'gap_fill', 'ordering', 'heading_matching'].includes(g?.type))
+  const secB = pbHit.sec
+  // 阅读所属 section：优先含 “Part A/Reading” 的，否则取阅读 group 最多的
+  const isReadingGroup = (g) => g.type === 'reading' || (g.passage && g.questions?.[0]?.options && !['matching', 'gap_fill', 'ordering', 'heading_matching', 'cloze', 'writing'].includes(g.type) && !/translation/.test(g.type || ''))
+  const secA = j.sections.find(s => /Part A/i.test(s.title || '') && (s.groups || []).some(isReadingGroup))
+    || j.sections.filter(s => (s.groups || []).some(isReadingGroup)).sort((a, b) => b.groups.filter(isReadingGroup).length - a.groups.filter(isReadingGroup).length)[0]
 
   // ---- 完形 ----
-  const clozeG = secI?.groups?.find(g => g.type === 'cloze');
+  const clozeG = clozeHit.g;
   const cloze = {
     instructions: instrOf(secI) || 'For each numbered blank in the following passage, there are four choices marked A, B, C and D. Choose the best one.',
     paragraphs: (clozeG?.passage || []).map(clean),
@@ -107,8 +115,7 @@ function convertPaper(year, examSet = 1) {
     }))
   };
 
-  // ---- 阅读（英语二 group 无 type：按“有 passage + questions 带 options”识别；排除 partB 类型组）----
-  const isReadingGroup = (g) => g.type === 'reading' || (g.passage && g.questions?.[0]?.options && !['matching', 'gap_fill', 'ordering', 'heading_matching'].includes(g.type))
+  // ---- 阅读（isReadingGroup 已在上方定义）----
   const readings = (secA?.groups || []).filter(isReadingGroup).map((g, ti) => ({
     no: ti + 1,
     title: clean(g.title || ''),
@@ -126,9 +133,8 @@ function convertPaper(year, examSet = 1) {
     })
   }));
 
-  // ---- Part B（按 group type 定位，避免英语二 secA/secB 同 section 时取错）----
-  const pbG = (secB?.groups || []).find(g => ['matching', 'gap_fill', 'ordering', 'heading_matching'].includes(g?.type))
-    || j.sections.flatMap(s => s.groups || []).find(g => ['matching', 'gap_fill', 'ordering', 'heading_matching'].includes(g?.type));
+  // ---- Part B（按 group type 定位；早年卷无 Part B → 空骨架）----
+  const pbG = pbHit.g
   let variant = 'gapfill';
   if (pbG?.type === 'ordering') variant = 'ordering';
   else if (pbG?.type === 'heading_matching') variant = 'headings';
@@ -149,7 +155,7 @@ function convertPaper(year, examSet = 1) {
   };
 
   // ---- 翻译（英语一：5 句划线 translation_sentences/translation；英语二：整段 translation_full）----
-  const trG = (secC?.groups || []).find(g => /translation/.test(g.type))
+  const trG = trHit.g
   let translation
   if (trG?.type === 'translation_full') {
     translation = {
@@ -184,6 +190,7 @@ function convertPaper(year, examSet = 1) {
 mkdirSync(OUT, { recursive: true });
 const report = { papers: [], answerConflicts: [], textDiffs: [] };
 const jobs = [];
+for (let y = 1998; y <= 2004; y++) jobs.push({ year: y, set: 0 });
 for (let y = 2005; y <= 2025; y++) jobs.push({ year: y, set: 1 });
 for (let y = 2010; y <= 2025; y++) jobs.push({ year: y, set: 2 });
 

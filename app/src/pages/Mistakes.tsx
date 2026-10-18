@@ -35,7 +35,7 @@ export function Mistakes() {
 
       <div className="mt-4 space-y-2">
         {list.map((a) => {
-          let parsed: { year: number; examSet: 1 | 2 } = { year: 0, examSet: 1 }
+          let parsed: { year: number; examSet: 0 | 1 | 2 } = { year: 0, examSet: 1 }
           try { parsed = parsePaperId(a.paperId) } catch { /* 旧记录 */ }
           const { year, examSet } = parsed
           return (
@@ -44,7 +44,7 @@ export function Mistakes() {
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-red-50 text-sm font-bold text-red-500">✗</span>
               <div>
                 <div className="text-sm font-semibold text-slate-800">
-                  {year} 英语{examSet === 2 ? '二' : '一'} · {SEC_LABEL[a.section] || a.section}{a.section === 'reading' ? ` Text ${a.textNo}` : ''} · 第 {a.qn} 题
+                  {year} {examSet === 2 ? '英语二' : examSet === 0 ? '早年卷' : '英语一'} · {SEC_LABEL[a.section] || a.section}{a.section === 'reading' ? ` Text ${a.textNo}` : ''} · 第 {a.qn} 题
                 </div>
                 <div className="text-xs text-slate-400">你选了 {a.choice} · {new Date(a.doneAt).toLocaleDateString('zh-CN')}</div>
               </div>
@@ -81,7 +81,7 @@ function RedoDialog({ paper, paperId, section, textNo, qn, onClose }: { paper: P
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 backdrop-blur-[2px] sm:items-center sm:p-6" onClick={onClose}>
       <div className="anim-in safe-bottom max-h-[88dvh] w-full max-w-2xl overflow-y-auto rounded-t-3xl bg-white p-4 shadow-2xl sm:rounded-3xl" onClick={(e) => e.stopPropagation()}>
         <div className="mb-2 flex items-center">
-          <span className="text-sm font-semibold text-slate-600">{paper.year} 英语{paper.examSet === 2 ? '二' : '一'} · 错题重做</span>
+          <span className="text-sm font-semibold text-slate-600">{paper.year} {paper.examSet === 2 ? '英语二' : paper.examSet === 0 ? '早年卷' : '英语一'} · 错题重做</span>
           <Link className="ml-3 text-xs text-indigo-600 hover:underline" to={`/paper/${paperId}`}>去试卷 →</Link>
           <button className="ml-auto flex h-7 w-7 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100" onClick={onClose}>✕</button>
         </div>

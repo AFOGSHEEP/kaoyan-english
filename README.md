@@ -2,13 +2,13 @@
 
 # 考研英语真题题库
 
-**英语（一）2005–2025 · 21 套 ＋ 英语（二）2010–2025 · 16 套**
+**英语（一）2005–2025 · 21 套 ＋ 英语（二）2010–2025 · 16 套 ＋ 早年统一卷 1998–2004 · 7 套（共 44 套）**
 
 做题 · 逐题精解 · 生词标注 · 单词本 · 批注 · AI 学习诊断
 
 一个本地优先的跨平台学习应用（PWA / Windows / Android）
 
-[📱 在线使用](https://afogsheep.github.io/kaoyan-english/) · [🤖 AI 诊断说明](CLAUDE.md)
+[📱 在线使用](https://afogsheep.github.io/kaoyan-english/) · [🤖 AI 诊断说明](CLAUDE.md) · [💬 微信小程序方案](docs/WEAPP-PLAN.md)
 
 </div>
 

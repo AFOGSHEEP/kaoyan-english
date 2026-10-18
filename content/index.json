@@ -1,5 +1,110 @@
 [
  {
+  "year": 1998,
+  "examSet": 0,
+  "counts": {
+   "cloze": 10,
+   "reading": 20,
+   "partB": 0,
+   "translation": 5
+  },
+  "partBVariant": "gapfill",
+  "verified": {
+   "cloze": "0/0",
+   "reading": "0/0"
+  }
+ },
+ {
+  "year": 1999,
+  "examSet": 0,
+  "counts": {
+   "cloze": 10,
+   "reading": 20,
+   "partB": 0,
+   "translation": 5
+  },
+  "partBVariant": "gapfill",
+  "verified": {
+   "cloze": "0/0",
+   "reading": "0/0"
+  }
+ },
+ {
+  "year": 2000,
+  "examSet": 0,
+  "counts": {
+   "cloze": 10,
+   "reading": 20,
+   "partB": 0,
+   "translation": 5
+  },
+  "partBVariant": "gapfill",
+  "verified": {
+   "cloze": "0/0",
+   "reading": "0/0"
+  }
+ },
+ {
+  "year": 2001,
+  "examSet": 0,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 0,
+   "translation": 5
+  },
+  "partBVariant": "gapfill",
+  "verified": {
+   "cloze": "0/0",
+   "reading": "0/0"
+  }
+ },
+ {
+  "year": 2002,
+  "examSet": 0,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 0,
+   "translation": 5
+  },
+  "partBVariant": "gapfill",
+  "verified": {
+   "cloze": "0/0",
+   "reading": "0/0"
+  }
+ },
+ {
+  "year": 2003,
+  "examSet": 0,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 0,
+   "translation": 5
+  },
+  "partBVariant": "gapfill",
+  "verified": {
+   "cloze": "0/0",
+   "reading": "0/0"
+  }
+ },
+ {
+  "year": 2004,
+  "examSet": 0,
+  "counts": {
+   "cloze": 20,
+   "reading": 20,
+   "partB": 0,
+   "translation": 5
+  },
+  "partBVariant": "gapfill",
+  "verified": {
+   "cloze": "0/0",
+   "reading": "0/0"
+  }
+ },
+ {
   "year": 2005,
   "examSet": 1,
   "counts": {

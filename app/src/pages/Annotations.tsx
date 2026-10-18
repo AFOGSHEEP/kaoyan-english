@@ -29,7 +29,7 @@ export function Annotations() {
             <Link key={a.id} to={`/paper/${a.paperId}?sec=${sec}&annot=${a.id}`}
               className="card card-hover block p-3.5">
               <div className="flex items-center gap-2 text-xs text-slate-400">
-                <span className="chip bg-slate-100 text-slate-500">{year} · 英语{examSet === 2 ? '二' : '一'} · {sectionLabel(a.section)}</span>
+                <span className="chip bg-slate-100 text-slate-500">{year} · {examSet === 2 ? '英语二' : examSet === 0 ? '早年卷' : '英语一'} · {sectionLabel(a.section)}</span>
                 <span className="ml-auto">{new Date(a.updatedAt).toLocaleString('zh-CN', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</span>
               </div>
               <div className="mt-1.5 text-sm font-medium leading-relaxed text-slate-800 underline decoration-amber-400 decoration-2 underline-offset-2">
